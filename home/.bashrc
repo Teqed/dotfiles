@@ -2,6 +2,10 @@
 if [[ -z "${__SH_INIT}" ]] ; then source "${HOME}/.profile" ; fi # Source the .profile, which sets environment variables first
 # If interactive
 case $- in *i* )
+    ttitle() { echo -n "]0;$*"; } # Set window title function
+    _hostname=$(hostname) # Get hostname and remove www. prefix if present
+    [[ $_hostname == www.* ]] && _hostname=${_hostname:4} ; [[ $_hostname == WWW.* ]] && _hostname=${_hostname:4}
+    ttitle "$_hostname" # Set title to hostname now
     ### Environment
     export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
     export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
@@ -95,12 +99,8 @@ case $- in *i* )
     cheat() { # Get manpage-like help for a command (e.g. cheat wget)
         curl cheat.sh/"$1"
     }
-    ttitle() { echo -n "]0;$*"; } # Set window title function
     ### Prompt
     export GIT_PS1_SHOWDIRTYSTATE=1 # Show * if repo is dirty
-    _hostname=$(hostname) # Get hostname and remove www. prefix if present
-    [[ $_hostname == www.* ]] && _hostname=${_hostname:4} ; [[ $_hostname == WWW.* ]] && _hostname=${_hostname:4}
-    ttitle "$_hostname" # Set title to hostname now
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then debian_chroot=$(cat /etc/debian_chroot) ; fi
     __prompt_command() { # Function to generate PS1 after each command
         history -a # Append to history file
