@@ -123,6 +123,7 @@ case $- in *i* )
     alias rm='rm -i' # Force interactive operation
     alias df='df -h' # Default to human readable figures
     alias du='du -h'
+    set -h # Enable hashing
     if hash dircolors 2>/dev/null; then # enable color support of ls and also add handy aliases
         [ -f "$XDG_CONFIG_HOME"/dircolors/dircolors ] && eval "$(dircolors -b "$XDG_CONFIG_HOME"/dircolors/dircolors)" || eval "$(dircolors -b)"
         alias ls='ls -hF --color=auto --group-directories-first'
