@@ -117,7 +117,7 @@ case $- in *i* )
     PROMPT_COMMAND=__prompt_command
     __prompt_command # Generate PS1 for first time
     ### Aliases
-    if [ -f "$HOME/.local/share/pki/trust/mozilla.p11-kit" ]; then alias curl='curl --cacert $HOME/.local/share/pki/trust/mozilla.p11-kit' ; fi
+    if [ -f "$XDG_LOCAL_HOME/share/pki/trust/mozilla.p11-kit" ]; then alias curl='curl --cacert $HOME/.local/share/pki/trust/mozilla.p11-kit' ; fi
     alias reload="source ~/.bash_profile" # Reload bash shortcut
     alias tn5250='tn5250 env.TERM=IBM-3477-FC' # Use 132x27 color display by default
     alias 5250='tn5250 ssl:localhost env.TERM=IBM-3477-FC' # Connect to localhost using TLS
